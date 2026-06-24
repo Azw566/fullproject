@@ -5,15 +5,6 @@ Operates on the full price history simultaneously using pandas/numpy operations.
 This is Phase 1's approach: fast to write and run, useful as a correctness
 baseline, but structurally unable to prevent look-ahead bias on its own.
 
-Phase 2 replaces this with an event-driven loop that makes look-ahead impossible
-by design. The key test of Phase 2: it must reproduce these numbers exactly.
-
-Phase 5 adds optional vol targeting and slippage, matching the extensions made
-to the event-driven engine so the parity invariant is preserved.
-
-PUBLIC INTERFACE
-────────────────
-    run(bars, signals, fee_bps, ...) → pd.DataFrame
 """
 
 import math

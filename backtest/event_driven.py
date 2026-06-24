@@ -5,21 +5,10 @@ Processes one bar at a time through a four-event pipeline:
 
     MarketEvent → SignalEvent → OrderEvent → FillEvent
 
-Unlike the vectorized engine, this loop structurally cannot look ahead:
-each bar is processed with only the information available at that point in
-time. The strategy cannot accidentally reference tomorrow's close because
-tomorrow's bar has not been emitted yet.
-
-The critical test of this engine: run() must produce the SAME output as
-backtest.vectorized.run() on the same inputs (within floating-point tolerance).
-If the numbers differ, there is an accounting bug — finding it is the lesson.
-
 PUBLIC INTERFACE
 ────────────────
     run(bars, signals, fee_bps) → pd.DataFrame
 
-The signature is identical to backtest.vectorized.run() so both engines
-can be swapped without any changes at the call site.
 """
 
 from __future__ import annotations
